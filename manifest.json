@@ -1,0 +1,33 @@
+{
+  "name": "৯ ইস্ট বেঙ্গল রেজিমেন্ট — এমটি ট্র্যাকার (9 EB MT Tracker Pro)",
+  "short_name": "9 EB MT Tracker",
+  "description": "৯ ইস্ট বেঙ্গল রেজিমেন্টের এমটি (MT) মেইনটেন্যান্স ও কিলোমিটার ট্র্যাকিং সিস্টেম",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f3f4f6",
+  "theme_color": "#059669",
+  "lang": "bn",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

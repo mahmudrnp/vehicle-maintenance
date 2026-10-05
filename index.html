@@ -7,6 +7,13 @@
     <meta name="description" content="৯ ইস্ট বেঙ্গল রেজিমেন্ট — এমটি (MT) মেইনটেন্যান্স ট্র্যাকিং সিস্টেম">
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23059669'%3E%3Cpath d='M3 13h1V6a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v2h1.5a1.5 1.5 0 0 1 1.34.83L22 12v5h-2a2 2 0 1 1-4 0H10a2 2 0 1 1-4 0H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm14-2V6H6v5h11z'/%3E%3C/svg%3E">
+    <!-- PWA: Manifest ও থিম-কালার (ধাপ ৫) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#059669">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="9 EB MT Tracker">
     <!--
       ⚠️ CSP রক্ষণাবেক্ষণ নোট (গুরুত্বপূর্ণ):
       নিচের script-src-এ একটা 'sha256-...' হ্যাশ আছে যেটা এই ফাইলের একমাত্র
@@ -18,7 +25,7 @@
     -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
-        script-src 'self' 'sha256-dcjoSCas7nySSfBDw4Ij4AXUZhoxSouy2m8ZGjV/G88=' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com;
+        script-src 'self' 'sha256-oct3Sfk4JPtZOw5hvRzcazAs+R9+SOKm4N61iOdgP1g=' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.gstatic.com;
         style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
         font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com data:;
         img-src 'self' data: https:;
@@ -66,7 +73,7 @@
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-8 transform transition-all">
             <div class="text-center mb-8">
                 <div class="w-24 h-24 mx-auto mb-4 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shadow-md border-4 border-emerald-100 overflow-hidden">
-                    <img src="logo.jpg" alt="9 EB Logo" class="w-full h-full object-cover" data-fallback-icon="shield">
+                    <img src="logo.png" alt="9 EB Logo" class="w-full h-full object-cover" data-fallback-icon="shield">
                 </div>
                 <h1 class="text-2xl font-bold text-emerald-800">৯ ইস্ট বেঙ্গল রেজিমেন্ট</h1>
                 <p class="text-slate-500 text-sm mt-1">এমটি (MT) মেইনটেন্যান্স ট্র্যাকার</p>
@@ -101,7 +108,7 @@
             <div class="px-4 py-3 flex justify-between items-center max-w-5xl mx-auto">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center shadow-sm border-2 border-emerald-500 overflow-hidden">
-                        <img src="logo.jpg" alt="Logo" class="w-full h-full object-cover" data-fallback-icon="truck">
+                        <img src="logo.png" alt="Logo" class="w-full h-full object-cover" data-fallback-icon="truck">
                     </div>
                     <div>
                         <h1 class="font-bold text-lg text-slate-800 leading-tight">৯ ইস্ট বেঙ্গল (Smart MT)</h1>
@@ -209,9 +216,14 @@
                 <section id="sec-settings" class="hidden animate-fade-in">
                     <div class="flex justify-between items-center mb-4 ml-1 border-b border-slate-200 pb-3">
                         <h3 class="font-bold text-slate-800"><i class="fa-solid fa-sliders text-purple-500 mr-2"></i>অ্যাপ সেটআপ ও ব্যাকআপ</h3>
-                        <button id="btn-export-excel" data-action="exportToExcel" class="bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow flex items-center">
-                            <i class="fa-solid fa-file-excel mr-1.5"></i> এক্সেল ডাউনলোড
-                        </button>
+                        <div class="flex gap-2 flex-wrap">
+                            <button id="btn-install-pwa" data-action="installPwa" class="hidden bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow flex items-center" aria-label="মোবাইল/ডেস্কটপে অ্যাপ হিসেবে ইনস্টল করুন">
+                                <i class="fa-solid fa-mobile-screen-button mr-1.5"></i> অ্যাপ ইনস্টল করুন
+                            </button>
+                            <button id="btn-export-excel" data-action="exportToExcel" class="bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded-lg transition shadow flex items-center">
+                                <i class="fa-solid fa-file-excel mr-1.5"></i> এক্সেল ডাউনলোড
+                            </button>
+                        </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
@@ -368,6 +380,55 @@
         enableIndexedDbPersistence(db).catch((err) => {
             console.log("Offline persistence error:", err.code);
         });
+
+        // ==========================================
+        // PWA: SERVICE WORKER রেজিস্ট্রেশন (ধাপ ৫.২)
+        // ==========================================
+        // network-first ক্যাশিং কৌশল sw.js-এ সংজ্ঞায়িত — Firestore/Auth কলে এটি হস্তক্ষেপ করে না।
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((reg) => console.log('Service Worker রেজিস্টার্ড:', reg.scope))
+                    .catch((err) => console.warn('Service Worker রেজিস্ট্রেশন ব্যর্থ:', err));
+            });
+        }
+
+        // ==========================================
+        // PWA: কাস্টম Install Prompt (ধাপ ৫.৩)
+        // ==========================================
+        // ব্রাউজারের ডিফল্ট ইনস্টল-প্রম্পট দমিয়ে রেখে, সেটিংস ট্যাবে আমাদের নিজস্ব বাটনে
+        // ইউজার ক্লিক করলেই prompt() ট্রিগার করা হয় — নিয়ন্ত্রিত UX-এর জন্য।
+        let deferredInstallPrompt = null;
+        const installBtn = document.getElementById('btn-install-pwa');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredInstallPrompt = e;
+            if (installBtn) installBtn.classList.remove('hidden');
+        });
+
+        window.triggerPwaInstall = async () => {
+            if (!deferredInstallPrompt) return;
+            deferredInstallPrompt.prompt();
+            const { outcome } = await deferredInstallPrompt.userChoice;
+            if (outcome === 'accepted') {
+                window.showToast('অ্যাপ ইনস্টল করা হচ্ছে...');
+            }
+            deferredInstallPrompt = null;
+            if (installBtn) installBtn.classList.add('hidden');
+        };
+
+        // ইনস্টল সম্পন্ন হলে বাটন চিরতরে লুকিয়ে ফেলা (ইতিমধ্যে ইনস্টল করা থাকলে আবার দেখানোর দরকার নেই)
+        window.addEventListener('appinstalled', () => {
+            deferredInstallPrompt = null;
+            if (installBtn) installBtn.classList.add('hidden');
+            window.showToast('সফলভাবে ইনস্টল হয়েছে! হোম স্ক্রিন থেকে এখন সরাসরি চালাতে পারবেন।');
+        });
+
+        // যদি ইতিমধ্যে standalone মোডে (PWA হিসেবে) চলমান থাকে, বাটন দেখানোর দরকার নেই
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            installBtn?.classList.add('hidden');
+        }
 
         if(isCanvas) {
             const initAuth = async () => {
@@ -1865,6 +1926,7 @@ ${htmlContent}
             editVehicle: (id) => window.editVehicle(id),
             deleteVehicle: (id) => window.deleteVehicle(id),
             openKmModal: (id, ba, km) => window.openKmModal(id, ba, km),
+            installPwa: () => window.triggerPwaInstall(),
         };
 
         document.body.addEventListener('click', (e) => {
